@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Presenter_TiendaDeRopa/1.0.0": {
+        "dependencies": {
+          "Domain_TiendaDeRopa": "1.0.0"
+        },
+        "runtime": {
+          "Presenter_TiendaDeRopa.dll": {}
+        }
+      },
+      "Domain_TiendaDeRopa/1.0.0": {
+        "runtime": {
+          "Domain_TiendaDeRopa.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Presenter_TiendaDeRopa/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain_TiendaDeRopa/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

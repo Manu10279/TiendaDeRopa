@@ -1,0 +1,15 @@
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\bin\Debug\net6.0\Presenter_TiendaDeRopa.deps.json
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\bin\Debug\net6.0\Presenter_TiendaDeRopa.dll
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\bin\Debug\net6.0\Presenter_TiendaDeRopa.pdb
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\bin\Debug\net6.0\Domain_TiendaDeRopa.dll
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\bin\Debug\net6.0\Domain_TiendaDeRopa.pdb
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.csproj.CopyComplete
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.dll
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\Presenter_TiendaDeRopa.pdb
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\ref\Presenter_TiendaDeRopa.dll
+C:\Users\Usuario\Desktop\Desafio Final\TiendaDeRopa\Presenter_TiendaDeRopa\obj\Debug\net6.0\refint\Presenter_TiendaDeRopa.dll
