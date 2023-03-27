@@ -49,7 +49,6 @@
             GBCalidad = new GroupBox();
             RBPremium = new RadioButton();
             RBStandard = new RadioButton();
-            BDisponibilidad = new Button();
             LStock = new Label();
             groupBox1 = new GroupBox();
             TBCantidad = new TextBox();
@@ -249,7 +248,7 @@
             // 
             GBCalidad.Controls.Add(RBPremium);
             GBCalidad.Controls.Add(RBStandard);
-            GBCalidad.Location = new Point(23, 284);
+            GBCalidad.Location = new Point(23, 277);
             GBCalidad.Name = "GBCalidad";
             GBCalidad.Size = new Size(320, 52);
             GBCalidad.TabIndex = 6;
@@ -278,20 +277,10 @@
             RBStandard.Text = "Standard";
             RBStandard.UseVisualStyleBackColor = true;
             // 
-            // BDisponibilidad
-            // 
-            BDisponibilidad.Location = new Point(20, 246);
-            BDisponibilidad.Name = "BDisponibilidad";
-            BDisponibilidad.Size = new Size(106, 23);
-            BDisponibilidad.TabIndex = 7;
-            BDisponibilidad.Text = "Consulta Stock";
-            BDisponibilidad.UseVisualStyleBackColor = true;
-            BDisponibilidad.Click += BDisponibilidad_Click;
-            // 
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(132, 250);
+            LStock.Location = new Point(20, 249);
             LStock.Name = "LStock";
             LStock.Size = new Size(173, 15);
             LStock.TabIndex = 8;
@@ -303,7 +292,7 @@
             groupBox1.Controls.Add(LCantidad);
             groupBox1.Controls.Add(TBPrecio);
             groupBox1.Controls.Add(LPesos);
-            groupBox1.Location = new Point(23, 342);
+            groupBox1.Location = new Point(23, 335);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(320, 52);
             groupBox1.TabIndex = 10;
@@ -344,7 +333,7 @@
             // 
             // BCotizar
             // 
-            BCotizar.Location = new Point(20, 407);
+            BCotizar.Location = new Point(20, 400);
             BCotizar.Name = "BCotizar";
             BCotizar.Size = new Size(106, 23);
             BCotizar.TabIndex = 11;
@@ -355,7 +344,7 @@
             // LPrecioFinal
             // 
             LPrecioFinal.AutoSize = true;
-            LPrecioFinal.Location = new Point(132, 411);
+            LPrecioFinal.Location = new Point(132, 404);
             LPrecioFinal.Name = "LPrecioFinal";
             LPrecioFinal.Size = new Size(13, 15);
             LPrecioFinal.TabIndex = 12;
@@ -370,12 +359,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 441);
+            ClientSize = new Size(524, 433);
             Controls.Add(LPrecioFinal);
             Controls.Add(BCotizar);
             Controls.Add(groupBox1);
             Controls.Add(LStock);
-            Controls.Add(BDisponibilidad);
             Controls.Add(GBCalidad);
             Controls.Add(GBPrenda);
             Controls.Add(LHistorial);
@@ -422,7 +410,6 @@
         private RadioButton RBPantalon;
         private RadioButton RBCamisa;
         private GroupBox GBCalidad;
-        private Button BDisponibilidad;
         private Label LStock;
         private RadioButton RBPremium;
         private RadioButton RBStandard;

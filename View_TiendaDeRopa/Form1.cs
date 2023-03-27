@@ -1,4 +1,6 @@
+using Domain_TiendaDeRopa;
 using Presenter_TiendaDeRopa;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace View_TiendaDeRopa
 {
@@ -7,7 +9,8 @@ namespace View_TiendaDeRopa
         TiendaRopaPresenter tiendaRopa;
         VendedorPresenter vendedorRopa;
         private string tipo, calidad;
-        private int cantidad;
+        private int cantidad, intentoInt;
+        private float intentoFloat;
 
         public Form1()
         {
@@ -22,6 +25,7 @@ namespace View_TiendaDeRopa
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            //Declarando Tipo de Prenda Automáticamente
             if (RBComun.Checked && RBComun.Enabled)
             {
                 tipo = "Pantalon Común";
@@ -49,6 +53,7 @@ namespace View_TiendaDeRopa
                 tipo += " Cuello Mao";
             }
 
+            //Declarando Calidad Automáticamente
             if (RBStandard.Checked)
             {
                 calidad = "Standard";
@@ -56,6 +61,51 @@ namespace View_TiendaDeRopa
             else if (RBPremium.Checked)
             {
                 calidad = "Premium";
+            }
+
+            //Mostrando Stock Atomáticamente
+            Disponibilidad();
+
+            //Marcando Errores Automáticamente
+            if (TBPrecio.Text != "" && float.TryParse(TBPrecio.Text, out intentoFloat) == false) //Precio Formato
+            {
+                TBPrecio.BackColor = Color.Crimson;
+            }
+            else
+            {
+                TBPrecio.BackColor = Color.White;
+            }
+
+            try //Stock Formato
+            {
+                if (TBCantidad.Text != "" && int.TryParse(TBCantidad.Text, out intentoInt) == false)
+                {
+                    throw new FormatException();
+                }
+                else
+                {
+                    TBCantidad.BackColor = Color.White;
+                }
+            }
+            catch (FormatException)
+            {
+                TBCantidad.BackColor = Color.Crimson;
+            }
+
+            try //Stock Insuficiente
+            {
+                if (TBCantidad.Text != "" && int.Parse(TBCantidad.Text) > cantidad)
+                {
+                    TBCantidad.BackColor = Color.Crimson;
+                }
+                else
+                {
+                    TBCantidad.BackColor = Color.White;
+                }
+            }
+            catch (FormatException)
+            {
+                TBCantidad.BackColor = Color.Crimson;
             }
         }
 
@@ -79,7 +129,7 @@ namespace View_TiendaDeRopa
             RBCuelloMao.Enabled = false;
         }
 
-        private void BDisponibilidad_Click(object sender, EventArgs e)
+        private void Disponibilidad()
         {
             tiendaRopa.ObtenerPantalon(tipo, calidad, out cantidad);
             LStock.Text = $"Unidaded de Stock Disponibles de {tipo} {calidad}: {cantidad}";
@@ -87,7 +137,20 @@ namespace View_TiendaDeRopa
 
         private void BCotizar_Click(object sender, EventArgs e)
         {
-            LPrecioFinal.Text = "$" + vendedorRopa.Cotizar(tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text)).ToString("0.00");
+            //Lanzando Errores al Presionar el Botón Cotizar
+            try
+            {
+                tiendaRopa.ObtenerPantalon(tipo, calidad, out cantidad);
+                LPrecioFinal.Text = "$" + vendedorRopa.Cotizar(tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text)).ToString("0.00");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
+            }
+            catch (FueraDeStock ex)
+            {
+                MessageBox.Show(ex.Message + tipo + " " + calidad, "Cotización");
+            }
         }
     }
 }
