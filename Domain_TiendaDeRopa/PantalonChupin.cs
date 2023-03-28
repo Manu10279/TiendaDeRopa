@@ -24,6 +24,13 @@ namespace Domain_TiendaDeRopa
                 return tipoHijo;
             }
         }
+        public override string Cuello
+        {
+            get
+            {
+                return "";
+            }
+        }
 
         public PantalonChupin(string calidad)
         {

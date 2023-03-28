@@ -24,6 +24,13 @@ namespace Domain_TiendaDeRopa
                 return tipo; 
             } 
         }
+        public override string Cuello
+        {
+            get
+            {
+                return "";
+            }
+        }
 
         public PantalonComun(string calidad)
         {

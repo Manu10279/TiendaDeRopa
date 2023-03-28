@@ -8,7 +8,7 @@ namespace View_TiendaDeRopa
     {
         TiendaRopaPresenter tiendaRopa;
         VendedorPresenter vendedorRopa;
-        private string tipo, calidad;
+        private string tipo, calidad, cuello;
         private int cantidad, intentoInt;
         private float intentoFloat;
 
@@ -29,10 +29,12 @@ namespace View_TiendaDeRopa
             if (RBComun.Checked && RBComun.Enabled)
             {
                 tipo = "Pantalon Común";
+                cuello = "";
             }
             else if (RBChupin.Checked && RBChupin.Enabled)
             {
                 tipo = "Pantalon Chupin";
+                cuello = "";
             }
 
             if (RBMangaCorta.Checked && RBMangaCorta.Enabled)
@@ -46,11 +48,11 @@ namespace View_TiendaDeRopa
 
             if (RBCuelloComun.Checked && RBCuelloComun.Enabled)
             {
-                tipo += " Cuello Común";
+                cuello = "Cuello Común";
             }
             else if (RBCuelloMao.Checked && RBCuelloMao.Enabled)
             {
-                tipo += " Cuello Mao";
+                cuello = "Cuello Mao";
             }
 
             //Declarando Calidad Automáticamente
@@ -131,8 +133,8 @@ namespace View_TiendaDeRopa
 
         private void Disponibilidad()
         {
-            tiendaRopa.ObtenerPantalon(tipo, calidad, out cantidad);
-            LStock.Text = $"Unidaded de Stock Disponibles de {tipo} {calidad}: {cantidad}";
+            tiendaRopa.ObtenerPrenda(tipo, calidad, cuello, out cantidad);
+            LStock.Text = $"Unidaded de Stock Disponibles de {tipo} {calidad}{" " + cuello}: {cantidad}";
         }
 
         private void BCotizar_Click(object sender, EventArgs e)
@@ -140,7 +142,7 @@ namespace View_TiendaDeRopa
             //Lanzando Errores al Presionar el Botón Cotizar
             try
             {
-                tiendaRopa.ObtenerPantalon(tipo, calidad, out cantidad);
+                tiendaRopa.ObtenerPrenda(tipo, calidad, cuello, out cantidad);
                 LPrecioFinal.Text = "$" + vendedorRopa.Cotizar(tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text)).ToString("0.00");
             }
             catch (FormatException)
