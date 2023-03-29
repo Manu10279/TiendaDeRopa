@@ -10,14 +10,18 @@ namespace Presenter_TiendaDeRopa
 {
     public class TiendaRopaPresenter
     {
-        Pantalon pantalonComun;
-        Pantalon pantalonChupin;
-        Camisa camisaMangaCorta;
-        Camisa camisaMangaLarga;
+        private VendedorPresenter vendedor;
         private List<Prenda> listadoPrendas = new List<Prenda>();
+        private Pantalon pantalonComun;
+        private Pantalon pantalonChupin;
+        private Camisa camisaMangaCorta;
+        private Camisa camisaMangaLarga;
+        
 
-        public TiendaRopaPresenter()
+        public TiendaRopaPresenter(VendedorPresenter vendedor)
         {
+            this.vendedor = vendedor;
+
             //Instanciando Pantalones
             for (int i = 0; i < 250; i++) //Pantalon Común
             {

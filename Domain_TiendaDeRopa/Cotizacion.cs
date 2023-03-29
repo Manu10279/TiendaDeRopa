@@ -15,69 +15,39 @@ namespace Domain_TiendaDeRopa
         {
             double precio = precioUnitario * cantidadCotizar;
 
-            if (tipo == "Pantalon Chupin")
+            
+            if (tipo == "Camisa Manga Corta" && cuello != "Cuello Mao") //RN1
+            {
+                precioFinal = precio * 0.90;
+            }
+            else if (cuello == "Cuello Mao" && tipo != "Camisa Manga Corta" ) //RN2
+            {
+                precioFinal = precio * 1.03;
+            }
+            else if (tipo == "Camisa Manga Corta" && cuello == "Cuello Mao") //RN3
+            {
+                precioFinal = precio * 0.90;
+                precioFinal = precioFinal * 1.03;
+            }
+            else if (tipo == "Pantalon Chupin") //RN4
             {
                 precioFinal = precio * 0.88;
             }
-            else 
+            else //Todas las Demás Posibilidades
             {
                 precioFinal = precio * 1;
             }
 
-            if (calidad == "Premium")
+            if (calidad == "Standard") //RN5
+            {
+                precioFinal = precioFinal * 1;
+            }
+            else if (calidad == "Premium") //RN6
             {
                 precioFinal = precioFinal * 1.3;
             }
 
             PrecioFinal = precioFinal;
-
-            for (int i = 0; i < cantidadCotizar; i++)
-            {
-                foreach (object prendaDesconocida in listadoPrendas)
-                {
-                    Type tipoPrenda = prendaDesconocida.GetType();
-
-                    switch (tipoPrenda.Name)
-                    {
-                        case "PantalonComun":
-                            PantalonComun pantalonComun = (PantalonComun)prendaDesconocida;
-                            if (cotizado != cantidadCotizar && tipo == "Pantalon Común")
-                            {
-                                pantalonComun.Cotizar(calidad);
-                                cotizado++;
-                            }
-                            break;
-                        case "PantalonChupin":
-                            PantalonChupin pantalonChupin = (PantalonChupin)prendaDesconocida;
-                            if (cotizado != cantidadCotizar && tipo == "Pantalon Chupin")
-                            {
-                                pantalonChupin.Cotizar(calidad);
-                                cotizado++;
-                            }
-                            break;
-                        case "CamisaMangaCorta":
-                            CamisaMangaCorta camisaMangaCorta = (CamisaMangaCorta)prendaDesconocida;
-                            if (cotizado != cantidadCotizar && tipo == "Camisa Manga Corta")
-                            {
-                                camisaMangaCorta.Cotizar(calidad, cuello);
-                                cotizado++;
-                            }
-                            break;
-                        case "CamisaMangaLarga":
-                            CamisaMangaLarga camisaMangaLarga = (CamisaMangaLarga)prendaDesconocida;
-                            if (cotizado != cantidadCotizar && tipo == "Camisa Manga Larga")
-                            {
-                                camisaMangaLarga.Cotizar(calidad, cuello);
-                                cotizado++;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            
         }
     }
 }

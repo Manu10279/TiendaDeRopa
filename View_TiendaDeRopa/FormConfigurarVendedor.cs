@@ -14,24 +14,29 @@ namespace View_TiendaDeRopa
 {
     public partial class FormConfigurarVendedor : Form
     {
-        public ConfigurarVendedorPresenter configurarVendedor;
+        VendedorPresenter vendedor;
         private int intentoInt;
         private string nombre = "", apellido = "", codigo = "";
         private float intentoFloat;
+        //Vendedor vendedor;
 
         public class NoString : Exception
         {
             public NoString(string mensaje) : base("Error: " + mensaje) { }
         }
 
-        public FormConfigurarVendedor()
+        public FormConfigurarVendedor(VendedorPresenter configurarVendedor)
         {
             InitializeComponent();
+            this.vendedor = configurarVendedor;
         }
 
         private void FormConfigurarVendedor_Load(object sender, EventArgs e)
         {
-            configurarVendedor = new ConfigurarVendedorPresenter();
+            TBVendedorNombre.Text = vendedor.Nombre;
+            TBVendedorApellido.Text = vendedor.Apellido;
+            LVendedorCodigo.Text = "Código: " + vendedor.Codigo;
+            BGuardar.Text = "Guardar";
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -95,11 +100,11 @@ namespace View_TiendaDeRopa
             {
                 if (TBVendedorNombre.Text != "" && TBVendedorApellido.Text != "")
                 {
-                    if (configurarVendedor.Utiles(TBVendedorNombre.Text, TBVendedorApellido.Text, codigo) == false)
+                    if (vendedor.Utiles(TBVendedorNombre.Text, TBVendedorApellido.Text, codigo) == false)
                     {
                         throw new NoString("Escriba solo letras");
                     }
-                    Text = "Guardado";
+                    BGuardar.Text = "Guardado";
                 }
                 if (TBVendedorNombre.Text == "")
                 {
@@ -114,14 +119,7 @@ namespace View_TiendaDeRopa
             {
                 MessageBox.Show(ex.Message, "Configurar Vendedor");
             }
-            configurarVendedor.ObtenerDatosVendedor(out nombre, out apellido, out codigo);
-        }
-
-        public void ObtenerDatos(out string nombre, out string apellido, out string codigo)
-        {
-            nombre = this.nombre;
-            apellido = this.apellido;
-            codigo = this.codigo;
+            LVendedorCodigo.Text = "Código: " + vendedor.Codigo;
         }
     }
 }

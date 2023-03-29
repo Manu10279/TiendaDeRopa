@@ -8,12 +8,16 @@ namespace View_TiendaDeRopa
     {
         FormConfigurarVendedor formConfigurarVendedor;
         TiendaRopaPresenter tiendaRopa;
-        VendedorPresenter vendedorRopa;
-        
+        VendedorPresenter vendedor;
+
         private string calidad = "", tipo = "", cuello = "";
-        private string nombre = "", apellido = "", codigo = "";
         private int cantidad, intentoInt;
         private float intentoFloat;
+
+        public class FueraDeStock : Exception
+        {
+            public FueraDeStock(string mensaje) : base("Error: " + mensaje) { }
+        }
 
         public Form1()
         {
@@ -22,18 +26,16 @@ namespace View_TiendaDeRopa
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            tiendaRopa = new TiendaRopaPresenter();
-            vendedorRopa = new VendedorPresenter();
-            formConfigurarVendedor = new FormConfigurarVendedor();
+            vendedor = new VendedorPresenter();
+            tiendaRopa = new TiendaRopaPresenter(vendedor);
+            formConfigurarVendedor = new FormConfigurarVendedor(vendedor);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             //Declarando Datos del Vendedor Automáticamente
-
-            formConfigurarVendedor.ObtenerDatos(out nombre, out apellido, out codigo);
-            LNombreVendedor.Text = $"Nombre del Vendedor: {nombre} {apellido}";
-            LCodigoVendedor.Text = $"Código del Vendedor: {codigo}";
+            LNombreVendedor.Text = $"Nombre del Vendedor: {vendedor.Nombre} {vendedor.Apellido}";
+            LCodigoVendedor.Text = $"Código del Vendedor: {vendedor.Codigo}";
 
             //Declarando Tipo de Prenda Automáticamente
             if (RBComun.Checked && RBComun.Enabled)
@@ -88,23 +90,7 @@ namespace View_TiendaDeRopa
                 TBPrecio.BackColor = Color.White;
             }
 
-            try //Stock Formato
-            {
-                if (TBCantidad.Text != "" && int.TryParse(TBCantidad.Text, out intentoInt) == false)
-                {
-                    throw new FormatException();
-                }
-                else
-                {
-                    TBCantidad.BackColor = Color.White;
-                }
-            }
-            catch (FormatException)
-            {
-                TBCantidad.BackColor = Color.Crimson;
-            }
-
-            try //Stock Insuficiente
+            try //Stock Insuficiente y Stock Formato
             {
                 if (TBCantidad.Text != "" && int.Parse(TBCantidad.Text) > cantidad)
                 {
@@ -153,8 +139,7 @@ namespace View_TiendaDeRopa
             try
             {
                 List<Prenda> listadoPrendas = tiendaRopa.ObtenerListadoPrendas();
-                LPrecioFinal.Text = "$" + vendedorRopa.Cotizar(listadoPrendas, tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text), cuello).ToString("0.00");
-                tiendaRopa.ObtenerPrenda(tipo, calidad, cuello, out cantidad);
+                LPrecioFinal.Text = "$" + vendedor.Cotizar(listadoPrendas, tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text), cuello).ToString("0.00");
             }
             catch (FormatException)
             {

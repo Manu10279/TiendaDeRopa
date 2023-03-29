@@ -52,14 +52,7 @@ namespace Domain_TiendaDeRopa
 
         public void Cotizar(string calidad) 
         {
-            if (calidad == "Standard")
-            {
-                cantidadStandard--;
-            }
-            else if (calidad == "Premium")
-            {
-                cantidadPremium--;
-            }
+            
         }
     }
 }
