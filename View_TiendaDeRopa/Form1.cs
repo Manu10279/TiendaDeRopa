@@ -134,7 +134,7 @@ namespace View_TiendaDeRopa
         private void Disponibilidad()
         {
             tiendaRopa.ObtenerPrenda(tipo, calidad, cuello, out cantidad);
-            LStock.Text = $"Unidaded de Stock Disponibles de {tipo} {calidad}{" " + cuello}: {cantidad}";
+            LStock.Text = $"Unidaded de Stock Disponibles de {tipo} {calidad} {cuello}: {cantidad}";
         }
 
         private void BCotizar_Click(object sender, EventArgs e)
@@ -142,16 +142,29 @@ namespace View_TiendaDeRopa
             //Lanzando Errores al Presionar el Botón Cotizar
             try
             {
+                List<Prenda> listadoPrendas = tiendaRopa.ObtenerListadoPrendas();
+                LPrecioFinal.Text = "$" + vendedorRopa.Cotizar(listadoPrendas, tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text), cuello).ToString("0.00");
                 tiendaRopa.ObtenerPrenda(tipo, calidad, cuello, out cantidad);
-                LPrecioFinal.Text = "$" + vendedorRopa.Cotizar(tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text)).ToString("0.00");
             }
             catch (FormatException)
             {
-                MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
+                
+                if (TBPrecio.Text == null)
+                {
+                    MessageBox.Show("Error: El precio está vacío", "Cotización");
+                }
+                else if (TBCantidad.Text == null)
+                {
+                    MessageBox.Show("Error: La cantidad está vacía", "Cotización");
+                }
+                else
+                {
+                    MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
+                }
             }
             catch (FueraDeStock ex)
             {
-                MessageBox.Show(ex.Message + tipo + " " + calidad, "Cotización");
+                MessageBox.Show(ex.Message + $"{tipo} {calidad} {cuello}", "Cotización");
             }
         }
     }

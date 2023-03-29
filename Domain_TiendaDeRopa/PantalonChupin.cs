@@ -11,28 +11,9 @@ namespace Domain_TiendaDeRopa
         private string calidad, tipo;
         private static string calidadPedida = "";
         private static int cantidadStandard = 0, cantidadPremium = 0;
-        public override string Calidad
-        {
-            get
-            {
-                return calidad;
-            }
-        }
-        public override string Tipo
-        {
-            get
-            {
-                return tipo;
-            }
-        }
-        public override string Cuello
-        {
-            get
-            {
-                return "";
-            }
-        }
 
+        public override string Calidad { get => calidad; }
+        public override string Tipo { get => tipo; }
         public static int Cantidad
         {
             get
@@ -63,9 +44,21 @@ namespace Domain_TiendaDeRopa
             tipo = "Pantalon Chupin";
         }
 
-        public void PedirCalidad(string calidad)
+        public void DatosSolicitados(string calidad)
         {
             calidadPedida = calidad;
+        }
+
+        public void Cotizar(string calidad)
+        {
+            if (calidad == "Standard")
+            {
+                cantidadStandard--;
+            }
+            else if (calidad == "Premium")
+            {
+                cantidadPremium--;
+            }
         }
     }
 }

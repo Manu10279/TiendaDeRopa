@@ -8,9 +8,9 @@ namespace Domain_TiendaDeRopa
 {
     public class Camisa : Prenda
     {
-        public override string Calidad { get; }
-        public override string Tipo { get; }
-        public override string Cuello { get; }
+        public override string Calidad { get; } = "";
+        public override string Tipo { get; } = "";
+        public override string Cuello { get; } = "";
         
     }
 }

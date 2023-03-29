@@ -10,7 +10,7 @@ namespace Domain_TiendaDeRopa
     {
         public abstract string Calidad { get; }
         public abstract string Tipo { get; }
-        public abstract string Cuello { get; }
+        public virtual string Cuello { get; } = "";
         
     }
 }

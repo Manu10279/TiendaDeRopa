@@ -14,8 +14,8 @@ namespace Presenter_TiendaDeRopa
         Pantalon pantalonChupin;
         Camisa camisaMangaCorta;
         Camisa camisaMangaLarga;
-        public List<Prenda> listadoPrendas = new List<Prenda>();
-        
+        private List<Prenda> listadoPrendas = new List<Prenda>();
+
         public TiendaRopaPresenter()
         {
             //Instanciando Pantalones
@@ -69,6 +69,7 @@ namespace Presenter_TiendaDeRopa
             }
         }
 
+
         public void ObtenerPrenda(string tipo, string calidad, string cuello, out int cantidad)
         {
             cantidad = 0;
@@ -82,7 +83,7 @@ namespace Presenter_TiendaDeRopa
                         PantalonComun pantalonComun = (PantalonComun)prendaDesconocida;
                         if (tipo == "Pantalon Común")
                         {
-                            pantalonComun.PedirCalidad(calidad);
+                            pantalonComun.DatosSolicitados(calidad);
                             cantidad = PantalonComun.Cantidad;
                         }
                         break;
@@ -90,7 +91,7 @@ namespace Presenter_TiendaDeRopa
                         PantalonChupin pantalonChupin = (PantalonChupin)prendaDesconocida;
                         if (tipo == "Pantalon Chupin")
                         {
-                            pantalonChupin.PedirCalidad(calidad);
+                            pantalonChupin.DatosSolicitados(calidad);
                             cantidad = PantalonChupin.Cantidad;
                         }
                         break;
@@ -98,7 +99,7 @@ namespace Presenter_TiendaDeRopa
                         CamisaMangaCorta camisaMangaCorta = (CamisaMangaCorta)prendaDesconocida;
                         if (tipo == "Camisa Manga Corta")
                         {
-                            camisaMangaCorta.PedirCalidad(calidad, cuello);
+                            camisaMangaCorta.DatosSolicitados(calidad, cuello);
                             cantidad = CamisaMangaCorta.Cantidad;
                         }
                         break;
@@ -106,7 +107,7 @@ namespace Presenter_TiendaDeRopa
                         CamisaMangaLarga camisaMangaLarga = (CamisaMangaLarga)prendaDesconocida;
                         if (tipo == "Camisa Manga Larga")
                         {
-                            camisaMangaLarga.PedirCalidad(calidad, cuello);
+                            camisaMangaLarga.DatosSolicitados(calidad, cuello);
                             cantidad = CamisaMangaLarga.Cantidad;
                         }
                         break;
@@ -114,6 +115,11 @@ namespace Presenter_TiendaDeRopa
                         break;
                 }
             }
+        }
+
+        public List<Prenda> ObtenerListadoPrendas()
+        {
+            return listadoPrendas;
         }
     }
 }

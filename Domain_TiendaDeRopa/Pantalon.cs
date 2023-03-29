@@ -9,8 +9,8 @@ namespace Domain_TiendaDeRopa
 {
     public abstract class Pantalon : Prenda
     {
-        public override string Calidad { get; }
-        public override string Tipo { get; }
+        public override string Calidad { get; } = "";
+        public override string Tipo { get; } = "";
 
         
 

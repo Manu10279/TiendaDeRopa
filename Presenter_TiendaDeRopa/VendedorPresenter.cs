@@ -14,11 +14,11 @@ namespace Presenter_TiendaDeRopa
 
     public class VendedorPresenter
     {
-        public double Cotizar(string tipo, string calidad, int cantidadCotizar, int cantidad, double precioUnitario)
+        public double Cotizar(List<Prenda> listadoPrendas, string tipo, string calidad, int cantidadCotizar, int cantidad, double precioUnitario, string cuello)
         {
             if (cantidadCotizar < cantidad)
             {
-                Cotizacion cotizacion = new Cotizacion(tipo, calidad, cantidadCotizar, precioUnitario);
+                Cotizacion cotizacion = new Cotizacion(listadoPrendas, tipo, calidad, cantidadCotizar, precioUnitario, cuello);
                 return cotizacion.PrecioFinal;
             }
             else

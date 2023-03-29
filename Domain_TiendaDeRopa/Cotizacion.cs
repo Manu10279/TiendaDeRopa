@@ -10,7 +10,8 @@ namespace Domain_TiendaDeRopa
     {
         private double precioFinal;
         public double PrecioFinal { get; }
-        public Cotizacion(string tipo, string calidad, int cantidadCotizar, double precioUnitario)
+        int cotizado = 0;
+        public Cotizacion(List<Prenda> listadoPrendas, string tipo, string calidad, int cantidadCotizar, double precioUnitario, string cuello)
         {
             double precio = precioUnitario * cantidadCotizar;
 
@@ -29,6 +30,54 @@ namespace Domain_TiendaDeRopa
             }
 
             PrecioFinal = precioFinal;
+
+            for (int i = 0; i < cantidadCotizar; i++)
+            {
+                foreach (object prendaDesconocida in listadoPrendas)
+                {
+                    Type tipoPrenda = prendaDesconocida.GetType();
+
+                    switch (tipoPrenda.Name)
+                    {
+                        case "PantalonComun":
+                            PantalonComun pantalonComun = (PantalonComun)prendaDesconocida;
+                            if (cotizado != cantidadCotizar && tipo == "Pantalon Común")
+                            {
+                                pantalonComun.Cotizar(calidad);
+                                cotizado++;
+                            }
+                            break;
+                        case "PantalonChupin":
+                            PantalonChupin pantalonChupin = (PantalonChupin)prendaDesconocida;
+                            if (cotizado != cantidadCotizar && tipo == "Pantalon Chupin")
+                            {
+                                pantalonChupin.Cotizar(calidad);
+                                cotizado++;
+                            }
+                            break;
+                        case "CamisaMangaCorta":
+                            CamisaMangaCorta camisaMangaCorta = (CamisaMangaCorta)prendaDesconocida;
+                            if (cotizado != cantidadCotizar && tipo == "Camisa Manga Corta")
+                            {
+                                camisaMangaCorta.Cotizar(calidad, cuello);
+                                cotizado++;
+                            }
+                            break;
+                        case "CamisaMangaLarga":
+                            CamisaMangaLarga camisaMangaLarga = (CamisaMangaLarga)prendaDesconocida;
+                            if (cotizado != cantidadCotizar && tipo == "Camisa Manga Larga")
+                            {
+                                camisaMangaLarga.Cotizar(calidad, cuello);
+                                cotizado++;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            
         }
     }
 }
