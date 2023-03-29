@@ -58,6 +58,7 @@
             BCotizar = new Button();
             LPrecioFinal = new Label();
             timer = new System.Windows.Forms.Timer(components);
+            BConfigurarVendedor = new Button();
             GBPrenda.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -71,41 +72,41 @@
             LNombreTienda.AutoSize = true;
             LNombreTienda.Location = new Point(9, 15);
             LNombreTienda.Name = "LNombreTienda";
-            LNombreTienda.Size = new Size(117, 15);
+            LNombreTienda.Size = new Size(155, 15);
             LNombreTienda.TabIndex = 0;
-            LNombreTienda.Text = "Nombre de la Tienda";
+            LNombreTienda.Text = "Nombre de la Tienda: Quark";
             // 
             // LDireccionTienda
             // 
             LDireccionTienda.AutoSize = true;
-            LDireccionTienda.Location = new Point(165, 15);
+            LDireccionTienda.Location = new Point(169, 15);
             LDireccionTienda.Name = "LDireccionTienda";
-            LDireccionTienda.Size = new Size(123, 15);
+            LDireccionTienda.Size = new Size(160, 15);
             LDireccionTienda.TabIndex = 1;
-            LDireccionTienda.Text = "Direccion de la Tienda";
+            LDireccionTienda.Text = "Direccion de la Tienda: Flores";
             // 
             // LNombreVendedor
             // 
             LNombreVendedor.AutoSize = true;
-            LNombreVendedor.Location = new Point(9, 47);
+            LNombreVendedor.Location = new Point(9, 39);
             LNombreVendedor.Name = "LNombreVendedor";
-            LNombreVendedor.Size = new Size(123, 15);
+            LNombreVendedor.Size = new Size(129, 15);
             LNombreVendedor.TabIndex = 2;
-            LNombreVendedor.Text = "Nombre del Vendedor";
+            LNombreVendedor.Text = "Nombre del Vendedor: ";
             // 
             // LCodigoVendedor
             // 
             LCodigoVendedor.AutoSize = true;
-            LCodigoVendedor.Location = new Point(165, 47);
+            LCodigoVendedor.Location = new Point(9, 66);
             LCodigoVendedor.Name = "LCodigoVendedor";
-            LCodigoVendedor.Size = new Size(118, 15);
+            LCodigoVendedor.Size = new Size(124, 15);
             LCodigoVendedor.TabIndex = 3;
-            LCodigoVendedor.Text = "Código del Vendedor";
+            LCodigoVendedor.Text = "Código del Vendedor: ";
             // 
             // LHistorial
             // 
             LHistorial.AutoSize = true;
-            LHistorial.Location = new Point(313, 47);
+            LHistorial.Location = new Point(386, 15);
             LHistorial.Name = "LHistorial";
             LHistorial.Size = new Size(126, 15);
             LHistorial.TabIndex = 4;
@@ -118,7 +119,7 @@
             GBPrenda.Controls.Add(panel1);
             GBPrenda.Controls.Add(RBPantalon);
             GBPrenda.Controls.Add(RBCamisa);
-            GBPrenda.Location = new Point(20, 78);
+            GBPrenda.Location = new Point(9, 97);
             GBPrenda.Name = "GBPrenda";
             GBPrenda.Size = new Size(323, 156);
             GBPrenda.TabIndex = 5;
@@ -248,7 +249,7 @@
             // 
             GBCalidad.Controls.Add(RBPremium);
             GBCalidad.Controls.Add(RBStandard);
-            GBCalidad.Location = new Point(23, 277);
+            GBCalidad.Location = new Point(12, 296);
             GBCalidad.Name = "GBCalidad";
             GBCalidad.Size = new Size(320, 52);
             GBCalidad.TabIndex = 6;
@@ -280,7 +281,7 @@
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(20, 249);
+            LStock.Location = new Point(9, 268);
             LStock.Name = "LStock";
             LStock.Size = new Size(173, 15);
             LStock.TabIndex = 8;
@@ -292,7 +293,7 @@
             groupBox1.Controls.Add(LCantidad);
             groupBox1.Controls.Add(TBPrecio);
             groupBox1.Controls.Add(LPesos);
-            groupBox1.Location = new Point(23, 335);
+            groupBox1.Location = new Point(12, 354);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(320, 52);
             groupBox1.TabIndex = 10;
@@ -333,7 +334,7 @@
             // 
             // BCotizar
             // 
-            BCotizar.Location = new Point(20, 400);
+            BCotizar.Location = new Point(9, 419);
             BCotizar.Name = "BCotizar";
             BCotizar.Size = new Size(106, 23);
             BCotizar.TabIndex = 11;
@@ -344,7 +345,7 @@
             // LPrecioFinal
             // 
             LPrecioFinal.AutoSize = true;
-            LPrecioFinal.Location = new Point(132, 404);
+            LPrecioFinal.Location = new Point(121, 423);
             LPrecioFinal.Name = "LPrecioFinal";
             LPrecioFinal.Size = new Size(13, 15);
             LPrecioFinal.TabIndex = 12;
@@ -355,11 +356,22 @@
             timer.Enabled = true;
             timer.Tick += timer_Tick;
             // 
+            // BConfigurarVendedor
+            // 
+            BConfigurarVendedor.Location = new Point(387, 43);
+            BConfigurarVendedor.Name = "BConfigurarVendedor";
+            BConfigurarVendedor.Size = new Size(125, 23);
+            BConfigurarVendedor.TabIndex = 13;
+            BConfigurarVendedor.Text = "Configurar Vendedor";
+            BConfigurarVendedor.UseVisualStyleBackColor = true;
+            BConfigurarVendedor.Click += BConfigurarVendedor_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 433);
+            ClientSize = new Size(524, 455);
+            Controls.Add(BConfigurarVendedor);
             Controls.Add(LPrecioFinal);
             Controls.Add(BCotizar);
             Controls.Add(groupBox1);
@@ -421,5 +433,6 @@
         private Button BCotizar;
         private Label LPrecioFinal;
         private System.Windows.Forms.Timer timer;
+        private Button BConfigurarVendedor;
     }
 }

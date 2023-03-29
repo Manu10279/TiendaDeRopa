@@ -6,9 +6,12 @@ namespace View_TiendaDeRopa
 {
     public partial class Form1 : Form
     {
+        FormConfigurarVendedor formConfigurarVendedor;
         TiendaRopaPresenter tiendaRopa;
         VendedorPresenter vendedorRopa;
+        
         private string calidad = "", tipo = "", cuello = "";
+        private string nombre = "", apellido = "", codigo = "";
         private int cantidad, intentoInt;
         private float intentoFloat;
 
@@ -21,10 +24,17 @@ namespace View_TiendaDeRopa
         {
             tiendaRopa = new TiendaRopaPresenter();
             vendedorRopa = new VendedorPresenter();
+            formConfigurarVendedor = new FormConfigurarVendedor();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            //Declarando Datos del Vendedor Automáticamente
+
+            formConfigurarVendedor.ObtenerDatos(out nombre, out apellido, out codigo);
+            LNombreVendedor.Text = $"Nombre del Vendedor: {nombre} {apellido}";
+            LCodigoVendedor.Text = $"Código del Vendedor: {codigo}";
+
             //Declarando Tipo de Prenda Automáticamente
             if (RBComun.Checked && RBComun.Enabled)
             {
@@ -148,24 +158,18 @@ namespace View_TiendaDeRopa
             }
             catch (FormatException)
             {
-                
-                if (TBPrecio.Text == null)
-                {
-                    MessageBox.Show("Error: El precio está vacío", "Cotización");
-                }
-                else if (TBCantidad.Text == null)
-                {
-                    MessageBox.Show("Error: La cantidad está vacía", "Cotización");
-                }
-                else
-                {
-                    MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
-                }
+                MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
             }
             catch (FueraDeStock ex)
             {
                 MessageBox.Show(ex.Message + $"{tipo} {calidad} {cuello}", "Cotización");
             }
         }
+
+        private void BConfigurarVendedor_Click(object sender, EventArgs e)
+        {
+            formConfigurarVendedor.ShowDialog();
+        }
+
     }
 }
