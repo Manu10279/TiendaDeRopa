@@ -11,5 +11,6 @@ namespace Domain_TiendaDeRopa
         public override string Calidad { get; }
         public override string Tipo { get; }
         public override string Cuello { get; }
+        
     }
 }

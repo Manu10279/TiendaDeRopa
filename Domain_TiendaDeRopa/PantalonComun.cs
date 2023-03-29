@@ -8,8 +8,40 @@ namespace Domain_TiendaDeRopa
 {
     public class PantalonComun : Pantalon
     {
-        private string calidad;
-        private string tipo;
+        private string calidad, tipo;
+        private static string calidadPedida = "";
+        private static int cantidadStandard = 0, cantidadPremium = 0;
+        public static int Cantidad 
+        { 
+            get 
+            {
+                if (calidadPedida == "Standard")
+                {
+                    return cantidadStandard;
+                }
+                else if (calidadPedida == "Premium")
+                {
+                    return cantidadPremium;
+                }
+                return 0;
+            }
+        }
+
+        public PantalonComun(string calidad)
+        {
+            if (calidad == "Standard")
+            {
+                cantidadStandard++;
+            }
+            else if (calidad == "Premium")
+            {
+                cantidadPremium++;
+            }
+            
+            this.calidad = calidad;
+            tipo = "Pantalon Común";
+        }
+
         public override string Calidad
         {
             get
@@ -32,10 +64,9 @@ namespace Domain_TiendaDeRopa
             }
         }
 
-        public PantalonComun(string calidad)
+        public void PedirCalidad(string calidad)
         {
-            this.calidad = calidad;
-            tipo = "Pantalon Común";
+            calidadPedida = calidad;
         }
     }
 }

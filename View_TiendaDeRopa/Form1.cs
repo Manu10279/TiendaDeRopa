@@ -8,7 +8,7 @@ namespace View_TiendaDeRopa
     {
         TiendaRopaPresenter tiendaRopa;
         VendedorPresenter vendedorRopa;
-        private string tipo, calidad, cuello;
+        private string calidad = "", tipo = "", cuello = "";
         private int cantidad, intentoInt;
         private float intentoFloat;
 
