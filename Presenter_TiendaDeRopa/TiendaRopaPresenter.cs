@@ -10,77 +10,72 @@ namespace Presenter_TiendaDeRopa
 {
     public class TiendaRopaPresenter
     {
-        private VendedorPresenter vendedor;
-        private List<Prenda> listadoPrendas = new List<Prenda>();
-        private Pantalon pantalonComun;
-        private Pantalon pantalonChupin;
-        private Camisa camisaMangaCorta;
-        private Camisa camisaMangaLarga;
-        
+        //Atributos de la Tienda
+        private string nombre = "Quark", direccion = "Emilio Civit 484, Mendoza";
+        private ArrayList listadoPrendas = new ArrayList();
+        private Pantalon pantalon;
+        private Camisa camisa;
 
-        public TiendaRopaPresenter(VendedorPresenter vendedor)
+        //Propiedades de la Tienda
+        public string Nombre { get => nombre; }
+        public string Direccion { get => direccion; }
+        public ArrayList ListadoPrendas { get => listadoPrendas; }
+
+        //Métodos de la Tienda
+        public TiendaRopaPresenter() //Constructor instancia Pantalones y Camisas
         {
-            this.vendedor = vendedor;
-
             //Instanciando Pantalones
             for (int i = 0; i < 250; i++) //Pantalon Común
             {
-                pantalonComun = new PantalonComun("Standard");
-                listadoPrendas.Add(pantalonComun);
-                pantalonComun = new PantalonComun("Premium");
-                listadoPrendas.Add(pantalonComun);
+                pantalon = new PantalonComun("Standard");
+                listadoPrendas.Add(pantalon);
+                pantalon = new PantalonComun("Premium");
+                listadoPrendas.Add(pantalon);
             }
-            pantalonComun = new PantalonComun("Premium");
-            listadoPrendas.Add(pantalonComun);
             for (int i = 0; i < 750; i++) //Pantalon Chupin
             {
-                pantalonChupin = new PantalonChupin("Standard");
-                listadoPrendas.Add(pantalonChupin);
-                pantalonChupin = new PantalonChupin("Premium");
-                listadoPrendas.Add(pantalonChupin);
+                pantalon = new PantalonChupin("Standard");
+                listadoPrendas.Add(pantalon);
+                pantalon = new PantalonChupin("Premium");
+                listadoPrendas.Add(pantalon);
             }
-            pantalonChupin = new PantalonChupin("Premium");
-            listadoPrendas.Add(pantalonChupin);
 
             //Instanciando Camisas
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < 150; i++) //Camisa Manga Corta cuello común
             {
-                camisaMangaCorta = new CamisaMangaCorta("Standard", "Cuello Común");
-                listadoPrendas.Add(camisaMangaCorta);
-                camisaMangaCorta = new CamisaMangaCorta("Premium", "Cuello Común");
-                listadoPrendas.Add(camisaMangaCorta);
+                camisa = new CamisaMangaCorta("Standard", "Cuello Común");
+                listadoPrendas.Add(camisa);
+                camisa = new CamisaMangaCorta("Premium", "Cuello Común");
+                listadoPrendas.Add(camisa);
             }
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++) //Camisa Manga Corta cuello mao
             {
-                camisaMangaCorta = new CamisaMangaCorta("Standard", "Cuello Mao");
-                listadoPrendas.Add(camisaMangaCorta);
-                camisaMangaCorta = new CamisaMangaCorta("Premium", "Cuello Mao");
-                listadoPrendas.Add(camisaMangaCorta);
+                camisa = new CamisaMangaCorta("Standard", "Cuello Mao");
+                listadoPrendas.Add(camisa);
+                camisa = new CamisaMangaCorta("Premium", "Cuello Mao");
+                listadoPrendas.Add(camisa);
             }
-            for (int i = 0; i < 175; i++)
+            for (int i = 0; i < 175; i++) //Camisa Manga Larga cuello común
             {
-                camisaMangaLarga = new CamisaMangaLarga("Standard", "Cuello Común");
-                listadoPrendas.Add(camisaMangaLarga);
-                camisaMangaLarga = new CamisaMangaLarga("Premium", "Cuello Común");
-                listadoPrendas.Add(camisaMangaLarga);
+                camisa = new CamisaMangaLarga("Standard", "Cuello Común");
+                listadoPrendas.Add(camisa);
+                camisa = new CamisaMangaLarga("Premium", "Cuello Común");
+                listadoPrendas.Add(camisa);
             }
-            for (int i = 0; i < 75; i++)
+            for (int i = 0; i < 75; i++) //Camisa Manga Larga cuello mao
             {
-                camisaMangaLarga = new CamisaMangaLarga("Standard", "Cuello Mao");
-                listadoPrendas.Add(camisaMangaLarga);
-                camisaMangaLarga = new CamisaMangaLarga("Premium", "Cuello Mao");
-                listadoPrendas.Add(camisaMangaLarga);
+                camisa = new CamisaMangaLarga("Standard", "Cuello Mao");
+                listadoPrendas.Add(camisa);
+                camisa = new CamisaMangaLarga("Premium", "Cuello Mao");
+                listadoPrendas.Add(camisa);
             }
         }
 
-
-        public void ObtenerPrenda(string tipo, string calidad, string cuello, out int cantidad)
+        public int ObtenerPrenda(string tipo, string calidad, string cuello) //Obtiene la Cantidad de una Prenda Específica
         {
-            cantidad = 0;
-            foreach (object prendaDesconocida in listadoPrendas)
+            foreach (object prendaDesconocida in listadoPrendas) //Recorriendo listadoPrendas e identificando sus Propiedades
             {
                 Type tipoPrenda = prendaDesconocida.GetType();
-
                 switch (tipoPrenda.Name)
                 {
                     case "PantalonComun":
@@ -88,7 +83,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Pantalon Común")
                         {
                             pantalonComun.DatosSolicitados(calidad);
-                            cantidad = PantalonComun.Cantidad;
+                            return PantalonComun.Cantidad;
                         }
                         break;
                     case "PantalonChupin":
@@ -96,7 +91,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Pantalon Chupin")
                         {
                             pantalonChupin.DatosSolicitados(calidad);
-                            cantidad = PantalonChupin.Cantidad;
+                            return PantalonChupin.Cantidad;
                         }
                         break;
                     case "CamisaMangaCorta":
@@ -104,7 +99,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Camisa Manga Corta")
                         {
                             camisaMangaCorta.DatosSolicitados(calidad, cuello);
-                            cantidad = CamisaMangaCorta.Cantidad;
+                            return CamisaMangaCorta.Cantidad;
                         }
                         break;
                     case "CamisaMangaLarga":
@@ -112,18 +107,14 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Camisa Manga Larga")
                         {
                             camisaMangaLarga.DatosSolicitados(calidad, cuello);
-                            cantidad = CamisaMangaLarga.Cantidad;
+                            return CamisaMangaLarga.Cantidad;
                         }
                         break;
                     default:
                         break;
                 }
             }
-        }
-
-        public List<Prenda> ObtenerListadoPrendas()
-        {
-            return listadoPrendas;
+            return 0;
         }
     }
 }

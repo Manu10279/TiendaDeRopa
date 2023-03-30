@@ -4,9 +4,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace View_TiendaDeRopa
 {
-    public partial class Form1 : Form
+    public partial class FormTiendaRopa : Form
     {
         FormConfigurarVendedor formConfigurarVendedor;
+        FormHistorialCotizacion formHistorialCotizacion;
         TiendaRopaPresenter tiendaRopa;
         VendedorPresenter vendedor;
 
@@ -19,16 +20,20 @@ namespace View_TiendaDeRopa
             public FueraDeStock(string mensaje) : base("Error: " + mensaje) { }
         }
 
-        public Form1()
+        public FormTiendaRopa()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            vendedor = new VendedorPresenter();
-            tiendaRopa = new TiendaRopaPresenter(vendedor);
+            tiendaRopa = new TiendaRopaPresenter();
+            vendedor = new VendedorPresenter(tiendaRopa);
             formConfigurarVendedor = new FormConfigurarVendedor(vendedor);
+            formHistorialCotizacion = new FormHistorialCotizacion();
+
+            LNombreTienda.Text = "Nombre de la Tienda: " + tiendaRopa.Nombre;
+            LDireccionTienda.Text = "Dirección de la Tienda: " + tiendaRopa.Direccion;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -129,25 +134,36 @@ namespace View_TiendaDeRopa
 
         private void Disponibilidad()
         {
-            tiendaRopa.ObtenerPrenda(tipo, calidad, cuello, out cantidad);
+            cantidad = tiendaRopa.ObtenerPrenda(tipo, calidad, cuello);
             LStock.Text = $"Unidaded de Stock Disponibles de {tipo} {calidad} {cuello}: {cantidad}";
         }
 
         private void BCotizar_Click(object sender, EventArgs e)
         {
-            //Lanzando Errores al Presionar el Botón Cotizar
-            try
+            if (vendedor.Codigo != "")
             {
-                List<Prenda> listadoPrendas = tiendaRopa.ObtenerListadoPrendas();
-                LPrecioFinal.Text = "$" + vendedor.Cotizar(listadoPrendas, tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text), cuello).ToString("0.00");
+                try
+                {
+                    if (vendedor.Cotizar(tipo, calidad, int.Parse(TBCantidad.Text), cantidad, double.Parse(TBPrecio.Text), cuello) == false)
+                    {
+                        throw new FueraDeStock("No hay suficiente stock de ");
+                    }
+                    formHistorialCotizacion.EnviarCotizacion(vendedor.Cotizaciones);
+                    LPrecioFinal.Text = "Última Cotización: $" + vendedor.Cotizaciones[vendedor.Cotizaciones.Count - 1].PrecioFinal.ToString("0.00");
+                    LUltimaCotizacion.Text = $" {tipo} {calidad} {cuello} x{TBCantidad.Text}";
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
+                }
+                catch (FueraDeStock ex)
+                {
+                    MessageBox.Show(ex.Message + $"{tipo} {calidad} {cuello}", "Cotización");
+                }
             }
-            catch (FormatException)
+            else
             {
-                MessageBox.Show("Error: Se encontraron errores de formato", "Cotización");
-            }
-            catch (FueraDeStock ex)
-            {
-                MessageBox.Show(ex.Message + $"{tipo} {calidad} {cuello}", "Cotización");
+                MessageBox.Show("Error: Para realizar una cotización primero configure su usuario de Vendedor", "Cotización");
             }
         }
 
@@ -156,5 +172,9 @@ namespace View_TiendaDeRopa
             formConfigurarVendedor.ShowDialog();
         }
 
+        private void LLHistorialCotizacion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            formHistorialCotizacion.Show();
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace View_TiendaDeRopa
 {
-    partial class Form1
+    partial class FormTiendaRopa
     {
         /// <summary>
         ///  Required designer variable.
@@ -33,7 +33,6 @@
             LDireccionTienda = new Label();
             LNombreVendedor = new Label();
             LCodigoVendedor = new Label();
-            LHistorial = new Label();
             GBPrenda = new GroupBox();
             panel3 = new Panel();
             RBChupin = new RadioButton();
@@ -59,6 +58,8 @@
             LPrecioFinal = new Label();
             timer = new System.Windows.Forms.Timer(components);
             BConfigurarVendedor = new Button();
+            LLHistorialCotizacion = new LinkLabel();
+            LUltimaCotizacion = new Label();
             GBPrenda.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -72,18 +73,18 @@
             LNombreTienda.AutoSize = true;
             LNombreTienda.Location = new Point(9, 15);
             LNombreTienda.Name = "LNombreTienda";
-            LNombreTienda.Size = new Size(155, 15);
+            LNombreTienda.Size = new Size(120, 15);
             LNombreTienda.TabIndex = 0;
-            LNombreTienda.Text = "Nombre de la Tienda: Quark";
+            LNombreTienda.Text = "Nombre de la Tienda:";
             // 
             // LDireccionTienda
             // 
             LDireccionTienda.AutoSize = true;
             LDireccionTienda.Location = new Point(169, 15);
             LDireccionTienda.Name = "LDireccionTienda";
-            LDireccionTienda.Size = new Size(160, 15);
+            LDireccionTienda.Size = new Size(126, 15);
             LDireccionTienda.TabIndex = 1;
-            LDireccionTienda.Text = "Direccion de la Tienda: Flores";
+            LDireccionTienda.Text = "Direccion de la Tienda:";
             // 
             // LNombreVendedor
             // 
@@ -102,15 +103,6 @@
             LCodigoVendedor.Size = new Size(124, 15);
             LCodigoVendedor.TabIndex = 3;
             LCodigoVendedor.Text = "Código del Vendedor: ";
-            // 
-            // LHistorial
-            // 
-            LHistorial.AutoSize = true;
-            LHistorial.Location = new Point(386, 15);
-            LHistorial.Name = "LHistorial";
-            LHistorial.Size = new Size(126, 15);
-            LHistorial.TabIndex = 4;
-            LHistorial.Text = "Historial de Cotización";
             // 
             // GBPrenda
             // 
@@ -336,7 +328,7 @@
             // 
             BCotizar.Location = new Point(9, 419);
             BCotizar.Name = "BCotizar";
-            BCotizar.Size = new Size(106, 23);
+            BCotizar.Size = new Size(106, 34);
             BCotizar.TabIndex = 11;
             BCotizar.Text = "Cotizar";
             BCotizar.UseVisualStyleBackColor = true;
@@ -347,9 +339,9 @@
             LPrecioFinal.AutoSize = true;
             LPrecioFinal.Location = new Point(121, 423);
             LPrecioFinal.Name = "LPrecioFinal";
-            LPrecioFinal.Size = new Size(13, 15);
+            LPrecioFinal.Size = new Size(134, 15);
             LPrecioFinal.TabIndex = 12;
-            LPrecioFinal.Text = "$";
+            LPrecioFinal.Text = "Última Cotización: $0,00";
             // 
             // timer
             // 
@@ -366,11 +358,33 @@
             BConfigurarVendedor.UseVisualStyleBackColor = true;
             BConfigurarVendedor.Click += BConfigurarVendedor_Click;
             // 
-            // Form1
+            // LLHistorialCotizacion
+            // 
+            LLHistorialCotizacion.AutoSize = true;
+            LLHistorialCotizacion.Location = new Point(387, 15);
+            LLHistorialCotizacion.Name = "LLHistorialCotizacion";
+            LLHistorialCotizacion.Size = new Size(126, 15);
+            LLHistorialCotizacion.TabIndex = 14;
+            LLHistorialCotizacion.TabStop = true;
+            LLHistorialCotizacion.Text = "Historial de Cotización";
+            LLHistorialCotizacion.LinkClicked += LLHistorialCotizacion_LinkClicked;
+            // 
+            // LUltimaCotizacion
+            // 
+            LUltimaCotizacion.AutoSize = true;
+            LUltimaCotizacion.Location = new Point(121, 438);
+            LUltimaCotizacion.Name = "LUltimaCotizacion";
+            LUltimaCotizacion.Size = new Size(164, 15);
+            LUltimaCotizacion.TabIndex = 15;
+            LUltimaCotizacion.Text = "Ningúna Cotización Realizada";
+            // 
+            // FormTiendaRopa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 455);
+            ClientSize = new Size(524, 463);
+            Controls.Add(LUltimaCotizacion);
+            Controls.Add(LLHistorialCotizacion);
             Controls.Add(BConfigurarVendedor);
             Controls.Add(LPrecioFinal);
             Controls.Add(BCotizar);
@@ -378,12 +392,11 @@
             Controls.Add(LStock);
             Controls.Add(GBCalidad);
             Controls.Add(GBPrenda);
-            Controls.Add(LHistorial);
             Controls.Add(LCodigoVendedor);
             Controls.Add(LNombreVendedor);
             Controls.Add(LDireccionTienda);
             Controls.Add(LNombreTienda);
-            Name = "Form1";
+            Name = "FormTiendaRopa";
             Text = "Cotizador Tienda de Ropa";
             Load += Form1_Load;
             GBPrenda.ResumeLayout(false);
@@ -408,7 +421,6 @@
         private Label LDireccionTienda;
         private Label LNombreVendedor;
         private Label LCodigoVendedor;
-        private Label LHistorial;
         private GroupBox GBPrenda;
         private Panel panel3;
         private RadioButton RBChupin;
@@ -434,5 +446,7 @@
         private Label LPrecioFinal;
         private System.Windows.Forms.Timer timer;
         private Button BConfigurarVendedor;
+        private LinkLabel LLHistorialCotizacion;
+        private Label LUltimaCotizacion;
     }
 }

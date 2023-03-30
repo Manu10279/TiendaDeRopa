@@ -9,7 +9,6 @@ namespace Domain_TiendaDeRopa
     public class PantalonComun : Pantalon
     {
         private string calidad, tipo;
-        private int cantidad;
         private static string calidadPedida = "";
         private static int cantidadStandard = 0, cantidadPremium = 0;
 
@@ -48,11 +47,6 @@ namespace Domain_TiendaDeRopa
         public void DatosSolicitados(string calidad)
         {
             calidadPedida = calidad;
-        }
-
-        public void Cotizar(string calidad) 
-        {
-            
         }
     }
 }

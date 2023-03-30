@@ -100,7 +100,7 @@ namespace View_TiendaDeRopa
             {
                 if (TBVendedorNombre.Text != "" && TBVendedorApellido.Text != "")
                 {
-                    if (vendedor.Utiles(TBVendedorNombre.Text, TBVendedorApellido.Text, codigo) == false)
+                    if (vendedor.Utiles(TBVendedorNombre.Text, TBVendedorApellido.Text) == false)
                     {
                         throw new NoString("Escriba solo letras");
                     }

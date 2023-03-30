@@ -9,33 +9,38 @@ namespace Presenter_TiendaDeRopa
 {
     public class VendedorPresenter
     {
+        //Atributos del Vendedor
         private string nombre = "", apellido = "", codigo = "";
+        private TiendaRopaPresenter tiendaRopa;
+        private List<Cotizacion> cotizaciones = new List<Cotizacion>();
 
+        //Propiedades del Vendedor
         public string Nombre { get => nombre; }
         public string Apellido { get => apellido; }
         public string Codigo { get => codigo; }
+        public TiendaRopaPresenter Tienda { get => tiendaRopa; }
+        public List<Cotizacion> Cotizaciones { get => cotizaciones; }
 
-
-        public class FueraDeStock : Exception
+        //Métodos del Vendedor
+        public VendedorPresenter(TiendaRopaPresenter tiendaRopa) //Constructor Declara Propiedad Tienda
         {
-            public FueraDeStock(string mensaje) : base("Error: " + mensaje) { }
+            this.tiendaRopa = tiendaRopa;
         }
 
-
-        public bool Utiles(string nombre, string apellido, string codigo)
+        public bool Utiles(string nombre, string apellido) //Detecta Errores de Formato
         {
             bool valido = true;
 
             foreach (char caracter in nombre) //Verifica si el nombre son solo letras
             {
-                if (nombre != "" && !Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter)) //Nombre Formato
+                if (nombre != "" && !Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter))
                 {
                     valido = false;
                 }
             }
             foreach (char caracter in apellido) //Verifica si el apellido son solo letras
             {
-                if (apellido != "" && !Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter)) //Nombre Formato
+                if (apellido != "" && !Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter))
                 {
                     valido = false;
                 }
@@ -53,23 +58,24 @@ namespace Presenter_TiendaDeRopa
             }
         }
 
-        public void CambiarDatos(string nombre, string apellido, string codigo)
+        public void CambiarDatos(string nombre, string apellido, string codigo) //Asignación de Datos del Vendedor
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.codigo = codigo;
         }
 
-        public double Cotizar(List<Prenda> listadoPrendas, string tipo, string calidad, int cantidadCotizar, int cantidad, double precioUnitario, string cuello)
+        public bool Cotizar(string tipo, string calidad, int cantidadCotizar, int cantidad, double precioUnitario, string cuello) //Si Existe Stock Cotiza
         {
             if (cantidadCotizar < cantidad)
             {
-                Cotizacion cotizacion = new Cotizacion(listadoPrendas, tipo, calidad, cantidadCotizar, precioUnitario, cuello);
-                return cotizacion.PrecioFinal;
+                Cotizacion cotizacion = new Cotizacion(Codigo, tipo, calidad, cuello, cantidadCotizar, precioUnitario);
+                cotizaciones.Add(cotizacion);
+                return true;
             }
             else
             {
-                throw new FueraDeStock("No hay suficiente stock de ");
+                return false;
             }
         }
     }

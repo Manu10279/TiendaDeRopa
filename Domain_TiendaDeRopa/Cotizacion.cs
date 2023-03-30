@@ -8,14 +8,30 @@ namespace Domain_TiendaDeRopa
 {
     public class Cotizacion
     {
-        private double precioFinal;
-        public double PrecioFinal { get; }
-        int cotizado = 0;
-        public Cotizacion(List<Prenda> listadoPrendas, string tipo, string calidad, int cantidadCotizar, double precioUnitario, string cuello)
-        {
-            double precio = precioUnitario * cantidadCotizar;
+        //Atributos de la Cotización
+        private static int ultimoId = 1;
+        private int id = 0, cantidad = 0;
+        private string codigo = "", prenda = "";
+        private double precioFinal = 0.0;
+        private DateTime fecha = DateTime.Now;
 
-            
+        //Propiedades de la Cotización
+        public int Id { get => id; }
+        public DateTime Fecha { get => fecha; }
+        public int Cantidad { get => cantidad; }
+        public string Codigo { get => codigo; }
+        public string Prenda { get => prenda; }
+        public double PrecioFinal { get => precioFinal; }
+
+        //Métodos de la Cotización
+        public Cotizacion(string codigo, string tipo, string calidad, string cuello, int cantidadCotizar, double precioUnitario)
+        {
+            id = ultimoId++;
+            this.codigo = codigo;
+            prenda = $"{tipo} {calidad} {cuello}";
+            cantidad = cantidadCotizar;
+
+            double precio = precioUnitario * cantidadCotizar;
             if (tipo == "Camisa Manga Corta" && cuello != "Cuello Mao") //RN1
             {
                 precioFinal = precio * 0.90;
@@ -46,8 +62,6 @@ namespace Domain_TiendaDeRopa
             {
                 precioFinal = precioFinal * 1.3;
             }
-
-            PrecioFinal = precioFinal;
         }
     }
 }
