@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfigurarVendedor));
             LVendedorNombre = new Label();
             TBVendedorNombre = new TextBox();
             TBVendedorApellido = new TextBox();
@@ -50,6 +51,7 @@
             // TBVendedorNombre
             // 
             TBVendedorNombre.Location = new Point(74, 11);
+            TBVendedorNombre.MaxLength = 17;
             TBVendedorNombre.Name = "TBVendedorNombre";
             TBVendedorNombre.Size = new Size(198, 23);
             TBVendedorNombre.TabIndex = 1;
@@ -57,6 +59,7 @@
             // TBVendedorApellido
             // 
             TBVendedorApellido.Location = new Point(74, 40);
+            TBVendedorApellido.MaxLength = 17;
             TBVendedorApellido.Name = "TBVendedorApellido";
             TBVendedorApellido.Size = new Size(198, 23);
             TBVendedorApellido.TabIndex = 3;
@@ -105,6 +108,9 @@
             Controls.Add(LVendedorApellido);
             Controls.Add(TBVendedorNombre);
             Controls.Add(LVendedorNombre);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FormConfigurarVendedor";
             Text = "Configurar Vendedor";
             Load += FormConfigurarVendedor_Load;

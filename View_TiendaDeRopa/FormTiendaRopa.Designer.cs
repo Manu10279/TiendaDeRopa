@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTiendaRopa));
             LNombreTienda = new Label();
             LDireccionTienda = new Label();
             LNombreVendedor = new Label();
@@ -80,7 +81,7 @@
             // LDireccionTienda
             // 
             LDireccionTienda.AutoSize = true;
-            LDireccionTienda.Location = new Point(169, 15);
+            LDireccionTienda.Location = new Point(9, 43);
             LDireccionTienda.Name = "LDireccionTienda";
             LDireccionTienda.Size = new Size(126, 15);
             LDireccionTienda.TabIndex = 1;
@@ -89,7 +90,7 @@
             // LNombreVendedor
             // 
             LNombreVendedor.AutoSize = true;
-            LNombreVendedor.Location = new Point(9, 39);
+            LNombreVendedor.Location = new Point(9, 71);
             LNombreVendedor.Name = "LNombreVendedor";
             LNombreVendedor.Size = new Size(129, 15);
             LNombreVendedor.TabIndex = 2;
@@ -98,7 +99,7 @@
             // LCodigoVendedor
             // 
             LCodigoVendedor.AutoSize = true;
-            LCodigoVendedor.Location = new Point(9, 66);
+            LCodigoVendedor.Location = new Point(9, 98);
             LCodigoVendedor.Name = "LCodigoVendedor";
             LCodigoVendedor.Size = new Size(124, 15);
             LCodigoVendedor.TabIndex = 3;
@@ -111,9 +112,9 @@
             GBPrenda.Controls.Add(panel1);
             GBPrenda.Controls.Add(RBPantalon);
             GBPrenda.Controls.Add(RBCamisa);
-            GBPrenda.Location = new Point(9, 97);
+            GBPrenda.Location = new Point(9, 129);
             GBPrenda.Name = "GBPrenda";
-            GBPrenda.Size = new Size(323, 156);
+            GBPrenda.Size = new Size(411, 156);
             GBPrenda.TabIndex = 5;
             GBPrenda.TabStop = false;
             GBPrenda.Text = "Prenda";
@@ -137,6 +138,7 @@
             RBChupin.TabIndex = 3;
             RBChupin.Text = "Chupin";
             RBChupin.UseVisualStyleBackColor = true;
+            RBChupin.CheckedChanged += RBChupin_CheckedChanged;
             // 
             // RBComun
             // 
@@ -150,6 +152,7 @@
             RBComun.TabStop = true;
             RBComun.Text = "Común";
             RBComun.UseVisualStyleBackColor = true;
+            RBComun.CheckedChanged += RBComun_CheckedChanged;
             // 
             // panel2
             // 
@@ -169,6 +172,7 @@
             RBCuelloMao.TabIndex = 3;
             RBCuelloMao.Text = "Cuello Mao";
             RBCuelloMao.UseVisualStyleBackColor = true;
+            RBCuelloMao.CheckedChanged += RBCuelloMao_CheckedChanged;
             // 
             // RBCuelloComun
             // 
@@ -181,6 +185,7 @@
             RBCuelloComun.TabStop = true;
             RBCuelloComun.Text = "Cuello Común";
             RBCuelloComun.UseVisualStyleBackColor = true;
+            RBCuelloComun.CheckedChanged += RBCuelloComun_CheckedChanged;
             // 
             // panel1
             // 
@@ -200,6 +205,7 @@
             RBMangaLarga.TabIndex = 3;
             RBMangaLarga.Text = "Manga Larga";
             RBMangaLarga.UseVisualStyleBackColor = true;
+            RBMangaLarga.CheckedChanged += RBMangaLarga_CheckedChanged;
             // 
             // RBMangaCorta
             // 
@@ -212,6 +218,7 @@
             RBMangaCorta.TabStop = true;
             RBMangaCorta.Text = "Manga Corta";
             RBMangaCorta.UseVisualStyleBackColor = true;
+            RBMangaCorta.CheckedChanged += RBMangaCorta_CheckedChanged;
             // 
             // RBPantalon
             // 
@@ -241,9 +248,9 @@
             // 
             GBCalidad.Controls.Add(RBPremium);
             GBCalidad.Controls.Add(RBStandard);
-            GBCalidad.Location = new Point(12, 296);
+            GBCalidad.Location = new Point(9, 328);
             GBCalidad.Name = "GBCalidad";
-            GBCalidad.Size = new Size(320, 52);
+            GBCalidad.Size = new Size(411, 52);
             GBCalidad.TabIndex = 6;
             GBCalidad.TabStop = false;
             GBCalidad.Text = "Calidad";
@@ -251,12 +258,13 @@
             // RBPremium
             // 
             RBPremium.AutoSize = true;
-            RBPremium.Location = new Point(104, 22);
+            RBPremium.Location = new Point(96, 22);
             RBPremium.Name = "RBPremium";
             RBPremium.Size = new Size(74, 19);
             RBPremium.TabIndex = 9;
             RBPremium.Text = "Premium";
             RBPremium.UseVisualStyleBackColor = true;
+            RBPremium.CheckedChanged += RBPremium_CheckedChanged;
             // 
             // RBStandard
             // 
@@ -269,15 +277,16 @@
             RBStandard.TabStop = true;
             RBStandard.Text = "Standard";
             RBStandard.UseVisualStyleBackColor = true;
+            RBStandard.CheckedChanged += RBStandard_CheckedChanged;
             // 
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(9, 268);
+            LStock.Location = new Point(9, 300);
             LStock.Name = "LStock";
-            LStock.Size = new Size(173, 15);
+            LStock.Size = new Size(98, 15);
             LStock.TabIndex = 8;
-            LStock.Text = "Unidaded de Stock Disponibles:";
+            LStock.Text = "Stock Disponible:";
             // 
             // groupBox1
             // 
@@ -285,9 +294,9 @@
             groupBox1.Controls.Add(LCantidad);
             groupBox1.Controls.Add(TBPrecio);
             groupBox1.Controls.Add(LPesos);
-            groupBox1.Location = new Point(12, 354);
+            groupBox1.Location = new Point(9, 386);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(320, 52);
+            groupBox1.Size = new Size(411, 52);
             groupBox1.TabIndex = 10;
             groupBox1.TabStop = false;
             groupBox1.Text = "Precio Unitario y Cantidad";
@@ -295,14 +304,15 @@
             // TBCantidad
             // 
             TBCantidad.Location = new Point(157, 21);
+            TBCantidad.MaxLength = 3;
             TBCantidad.Name = "TBCantidad";
-            TBCantidad.Size = new Size(66, 23);
-            TBCantidad.TabIndex = 14;
+            TBCantidad.Size = new Size(68, 23);
+            TBCantidad.TabIndex = 3;
             // 
             // LCantidad
             // 
             LCantidad.AutoSize = true;
-            LCantidad.Location = new Point(96, 26);
+            LCantidad.Location = new Point(96, 25);
             LCantidad.Name = "LCantidad";
             LCantidad.Size = new Size(55, 15);
             LCantidad.TabIndex = 13;
@@ -311,8 +321,9 @@
             // TBPrecio
             // 
             TBPrecio.Location = new Point(22, 21);
+            TBPrecio.MaxLength = 9;
             TBPrecio.Name = "TBPrecio";
-            TBPrecio.Size = new Size(66, 23);
+            TBPrecio.Size = new Size(68, 23);
             TBPrecio.TabIndex = 12;
             // 
             // LPesos
@@ -326,7 +337,7 @@
             // 
             // BCotizar
             // 
-            BCotizar.Location = new Point(9, 419);
+            BCotizar.Location = new Point(9, 451);
             BCotizar.Name = "BCotizar";
             BCotizar.Size = new Size(106, 34);
             BCotizar.TabIndex = 11;
@@ -337,7 +348,7 @@
             // LPrecioFinal
             // 
             LPrecioFinal.AutoSize = true;
-            LPrecioFinal.Location = new Point(121, 423);
+            LPrecioFinal.Location = new Point(121, 455);
             LPrecioFinal.Name = "LPrecioFinal";
             LPrecioFinal.Size = new Size(134, 15);
             LPrecioFinal.TabIndex = 12;
@@ -350,7 +361,7 @@
             // 
             // BConfigurarVendedor
             // 
-            BConfigurarVendedor.Location = new Point(387, 43);
+            BConfigurarVendedor.Location = new Point(295, 43);
             BConfigurarVendedor.Name = "BConfigurarVendedor";
             BConfigurarVendedor.Size = new Size(125, 23);
             BConfigurarVendedor.TabIndex = 13;
@@ -361,7 +372,7 @@
             // LLHistorialCotizacion
             // 
             LLHistorialCotizacion.AutoSize = true;
-            LLHistorialCotizacion.Location = new Point(387, 15);
+            LLHistorialCotizacion.Location = new Point(294, 15);
             LLHistorialCotizacion.Name = "LLHistorialCotizacion";
             LLHistorialCotizacion.Size = new Size(126, 15);
             LLHistorialCotizacion.TabIndex = 14;
@@ -372,7 +383,7 @@
             // LUltimaCotizacion
             // 
             LUltimaCotizacion.AutoSize = true;
-            LUltimaCotizacion.Location = new Point(121, 438);
+            LUltimaCotizacion.Location = new Point(121, 470);
             LUltimaCotizacion.Name = "LUltimaCotizacion";
             LUltimaCotizacion.Size = new Size(164, 15);
             LUltimaCotizacion.TabIndex = 15;
@@ -382,7 +393,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 463);
+            ClientSize = new Size(432, 497);
             Controls.Add(LUltimaCotizacion);
             Controls.Add(LLHistorialCotizacion);
             Controls.Add(BConfigurarVendedor);
@@ -396,6 +407,9 @@
             Controls.Add(LNombreVendedor);
             Controls.Add(LDireccionTienda);
             Controls.Add(LNombreTienda);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FormTiendaRopa";
             Text = "Cotizador Tienda de Ropa";
             Load += Form1_Load;

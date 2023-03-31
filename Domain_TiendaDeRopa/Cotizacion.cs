@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,14 @@ namespace Domain_TiendaDeRopa
 {
     public class Cotizacion
     {
-        //Atributos de la Cotización
+        //Atributos
         private static int ultimoId = 1;
         private int id = 0, cantidad = 0;
         private string codigo = "", prenda = "";
         private double precioFinal = 0.0;
         private DateTime fecha = DateTime.Now;
 
-        //Propiedades de la Cotización
+        //Propiedades
         public int Id { get => id; }
         public DateTime Fecha { get => fecha; }
         public int Cantidad { get => cantidad; }
@@ -23,12 +24,12 @@ namespace Domain_TiendaDeRopa
         public string Prenda { get => prenda; }
         public double PrecioFinal { get => precioFinal; }
 
-        //Métodos de la Cotización
-        public Cotizacion(string codigo, string tipo, string calidad, string cuello, int cantidadCotizar, double precioUnitario)
+        //Métodos
+        public Cotizacion(double precioUnitario, string calidad, string codigo, string tipo, string cuello, int cantidadCotizar)
         {
             id = ultimoId++;
             this.codigo = codigo;
-            prenda = $"{tipo} {calidad} {cuello}";
+            this.prenda = $"{tipo} {calidad} {cuello}";
             cantidad = cantidadCotizar;
 
             double precio = precioUnitario * cantidadCotizar;
@@ -49,7 +50,7 @@ namespace Domain_TiendaDeRopa
             {
                 precioFinal = precio * 0.88;
             }
-            else //Todas las Demás Posibilidades
+            else //Todas las demás posibilidades
             {
                 precioFinal = precio * 1;
             }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Domain_TiendaDeRopa
 {
-    public abstract class Pantalon : Prenda
+    public abstract class Pantalon : Prenda 
     {
-        public override string Calidad { get; } = "";
-        public override string Tipo { get; } = "";
-
-        
-
+        //Métodos
+        public void DatosSolicitados(string calidad)
+        {
+            calidadPedida = calidad;
+        }
     }
 }

@@ -9,25 +9,26 @@ namespace Presenter_TiendaDeRopa
 {
     public class VendedorPresenter
     {
-        //Atributos del Vendedor
+        //Atributos
         private string nombre = "", apellido = "", codigo = "";
-        private TiendaRopaPresenter tiendaRopa;
         private List<Cotizacion> cotizaciones = new List<Cotizacion>();
+        private Cotizacion cotizacion;
+        private TiendaRopaPresenter tiendaRopa;
+        private Prenda prendaSeleccionada;
 
-        //Propiedades del Vendedor
+        //Propiedades
         public string Nombre { get => nombre; }
         public string Apellido { get => apellido; }
         public string Codigo { get => codigo; }
-        public TiendaRopaPresenter Tienda { get => tiendaRopa; }
         public List<Cotizacion> Cotizaciones { get => cotizaciones; }
 
-        //Métodos del Vendedor
-        public VendedorPresenter(TiendaRopaPresenter tiendaRopa) //Constructor Declara Propiedad Tienda
+        //Métodos
+        public VendedorPresenter(TiendaRopaPresenter tiendaRopa)
         {
             this.tiendaRopa = tiendaRopa;
         }
 
-        public bool Utiles(string nombre, string apellido) //Detecta Errores de Formato
+        public bool Utiles(string nombre, string apellido) //Detecta errores de formato
         {
             bool valido = true;
 
@@ -58,18 +59,61 @@ namespace Presenter_TiendaDeRopa
             }
         }
 
-        public void CambiarDatos(string nombre, string apellido, string codigo) //Asignación de Datos del Vendedor
+        public void CambiarDatos(string nombre, string apellido, string codigo) //Asignación de datos del Vendedor
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.codigo = codigo;
         }
 
-        public bool Cotizar(string tipo, string calidad, int cantidadCotizar, int cantidad, double precioUnitario, string cuello) //Si Existe Stock Cotiza
+        public bool Cotizar(string tipo, string calidad, int cantidadCotizar, int cantidad, double precioUnitario, string cuello) //Si existe stock cotiza
         {
-            if (cantidadCotizar < cantidad)
+            if (cantidadCotizar <= cantidad)
             {
-                Cotizacion cotizacion = new Cotizacion(Codigo, tipo, calidad, cuello, cantidadCotizar, precioUnitario);
+                foreach (object prendaDesconocida in tiendaRopa.ListadoPrendas)
+                {
+                    Type tipoPrenda = prendaDesconocida.GetType();
+                    switch (tipoPrenda.Name)
+                    {
+                        case "PantalonComun":
+                            PantalonComun pantalonComun = (PantalonComun)prendaDesconocida;
+                            if (tipo == "Pantalon Común")
+                            {
+                                pantalonComun.CambiarPrecio(precioUnitario);
+                                prendaSeleccionada = pantalonComun;
+                            }
+                            break;
+                        case "PantalonChupin":
+                            PantalonChupin pantalonChupin = (PantalonChupin)prendaDesconocida;
+                            if (tipo == "Pantalon Chupin")
+                            {
+                                pantalonChupin.CambiarPrecio(precioUnitario);
+                                prendaSeleccionada = pantalonChupin;
+                            }
+                            break;
+                        case "CamisaMangaCorta":
+                            CamisaMangaCorta camisaMangaCorta = (CamisaMangaCorta)prendaDesconocida;
+                            if (tipo == "Camisa Manga Corta")
+                            {
+                                camisaMangaCorta.CambiarPrecio(precioUnitario);
+                                prendaSeleccionada = camisaMangaCorta;
+                            }
+                            break;
+                        case "CamisaMangaLarga":
+                            CamisaMangaLarga camisaMangaLarga = (CamisaMangaLarga)prendaDesconocida;
+                            if (tipo == "Camisa Manga Larga")
+                            {
+                                camisaMangaLarga.CambiarPrecio(precioUnitario);
+                                prendaSeleccionada = camisaMangaLarga;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
+
+                cotizacion = new Cotizacion(prendaSeleccionada.Precio, calidad, Codigo, tipo, cuello, cantidadCotizar);
                 cotizaciones.Add(cotizacion);
                 return true;
             }

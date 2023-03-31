@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain_TiendaDeRopa
+﻿namespace Domain_TiendaDeRopa
 {
     public abstract class Prenda
     {
-        public abstract string Calidad { get; }
-        public abstract string Tipo { get; }
-        public virtual string Cuello { get; } = "";
+        //Atributos
+        protected string calidad = "", calidadPedida = "";
+        protected double precio = 0.00;
+
+        //Propiedades
+        public virtual string Calidad { get => calidad; }
+        public virtual double Precio { get => precio; }
+        public virtual int Cantidad { get; }
         
+        //Métodos
+        public void CambiarPrecio(double precio)
+        {
+            this.precio = precio;
+        }
     }
 }

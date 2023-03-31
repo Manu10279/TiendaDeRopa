@@ -8,9 +8,14 @@ namespace Domain_TiendaDeRopa
 {
     public class Camisa : Prenda
     {
-        public override string Calidad { get; } = "";
-        public override string Tipo { get; } = "";
-        public override string Cuello { get; } = "";
-        
+        //Atributos
+        protected string cuelloPedido = "";
+
+        //Métodos
+        public void DatosSolicitados(string calidad, string cuello)
+        {
+            calidadPedida = calidad;
+            cuelloPedido = cuello;
+        }
     }
 }

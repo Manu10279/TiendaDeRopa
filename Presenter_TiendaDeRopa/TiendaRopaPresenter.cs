@@ -20,7 +20,7 @@ namespace Presenter_TiendaDeRopa
         public string Nombre { get => nombre; }
         public string Direccion { get => direccion; }
         public ArrayList ListadoPrendas { get => listadoPrendas; }
-
+        
         //Métodos de la Tienda
         public TiendaRopaPresenter() //Constructor instancia Pantalones y Camisas
         {
@@ -83,7 +83,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Pantalon Común")
                         {
                             pantalonComun.DatosSolicitados(calidad);
-                            return PantalonComun.Cantidad;
+                            return pantalonComun.Cantidad;
                         }
                         break;
                     case "PantalonChupin":
@@ -91,7 +91,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Pantalon Chupin")
                         {
                             pantalonChupin.DatosSolicitados(calidad);
-                            return PantalonChupin.Cantidad;
+                            return pantalonChupin.Cantidad;
                         }
                         break;
                     case "CamisaMangaCorta":
@@ -99,7 +99,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Camisa Manga Corta")
                         {
                             camisaMangaCorta.DatosSolicitados(calidad, cuello);
-                            return CamisaMangaCorta.Cantidad;
+                            return camisaMangaCorta.Cantidad;
                         }
                         break;
                     case "CamisaMangaLarga":
@@ -107,7 +107,7 @@ namespace Presenter_TiendaDeRopa
                         if (tipo == "Camisa Manga Larga")
                         {
                             camisaMangaLarga.DatosSolicitados(calidad, cuello);
-                            return CamisaMangaLarga.Cantidad;
+                            return camisaMangaLarga.Cantidad;
                         }
                         break;
                     default:

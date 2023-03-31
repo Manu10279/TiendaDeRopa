@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHistorialCotizacion));
             DGVCotizaciones = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
-            Fecha = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
             Codigo = new DataGridViewTextBoxColumn();
             Prenda = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
+            Fecha = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)DGVCotizaciones).BeginInit();
             SuspendLayout();
             // 
             // DGVCotizaciones
             // 
             DGVCotizaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVCotizaciones.Columns.AddRange(new DataGridViewColumn[] { Id, Fecha, Cantidad, Codigo, Prenda, Precio });
-            DGVCotizaciones.Location = new Point(0, 0);
+            DGVCotizaciones.Columns.AddRange(new DataGridViewColumn[] { Id, Codigo, Prenda, Cantidad, Precio, Fecha });
+            DGVCotizaciones.Location = new Point(-1, -1);
             DGVCotizaciones.Name = "DGVCotizaciones";
             DGVCotizaciones.RowTemplate.Height = 25;
-            DGVCotizaciones.Size = new Size(800, 451);
+            DGVCotizaciones.Size = new Size(709, 451);
             DGVCotizaciones.TabIndex = 0;
             // 
             // Id
@@ -53,44 +54,58 @@
             Id.HeaderText = "ID";
             Id.Name = "Id";
             Id.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha y Hora";
-            Fecha.Name = "Fecha";
-            Fecha.ReadOnly = true;
-            Fecha.Width = 150;
-            // 
-            // Cantidad
-            // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.Name = "Cantidad";
-            Cantidad.ReadOnly = true;
+            Id.Resizable = DataGridViewTriState.False;
+            Id.Width = 40;
             // 
             // Codigo
             // 
             Codigo.HeaderText = "Código del Vendedor";
             Codigo.Name = "Codigo";
             Codigo.ReadOnly = true;
+            Codigo.Resizable = DataGridViewTriState.False;
+            Codigo.Width = 80;
             // 
             // Prenda
             // 
             Prenda.HeaderText = "Prenda";
             Prenda.Name = "Prenda";
             Prenda.ReadOnly = true;
+            Prenda.Resizable = DataGridViewTriState.False;
+            Prenda.Width = 250;
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.Resizable = DataGridViewTriState.False;
+            Cantidad.Width = 70;
             // 
             // Precio
             // 
             Precio.HeaderText = "Precio";
             Precio.Name = "Precio";
             Precio.ReadOnly = true;
+            Precio.Resizable = DataGridViewTriState.False;
+            Precio.Width = 105;
+            // 
+            // Fecha
+            // 
+            Fecha.HeaderText = "Fecha y Hora";
+            Fecha.Name = "Fecha";
+            Fecha.ReadOnly = true;
+            Fecha.Resizable = DataGridViewTriState.False;
+            Fecha.Width = 120;
             // 
             // FormHistorialCotizacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(703, 450);
             Controls.Add(DGVCotizaciones);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FormHistorialCotizacion";
             Text = "Historial de Cotizaciones";
             FormClosing += FormHistorialCotizacion_FormClosing;
@@ -103,10 +118,10 @@
 
         private DataGridView DGVCotizaciones;
         private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn Codigo;
         private DataGridViewTextBoxColumn Prenda;
+        private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn Precio;
+        private DataGridViewTextBoxColumn Fecha;
     }
 }

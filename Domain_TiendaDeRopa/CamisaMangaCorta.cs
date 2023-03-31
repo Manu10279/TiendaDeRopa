@@ -8,15 +8,12 @@ namespace Domain_TiendaDeRopa
 {
     public class CamisaMangaCorta : Camisa
     {
-        private string calidad, tipo, cuello; //Propiedades de Objeto
-        private static string calidadPedida = "", cuelloPedido = ""; //Input 
-        private static int cantidadStandardComun = 0, cantidadPremiumComun = 0; //Propiedad Cantidad Posible: Cuello Común
-        private static int cantidadStandardMao = 0, cantidadPremiumMao = 0; //Propiedad Cantidad Posible: Cuello Mao
+        //Atributos
+        private static int cantidadStandardComun = 0, cantidadPremiumComun = 0;
+        private static int cantidadStandardMao = 0, cantidadPremiumMao = 0;
 
-        public override string Calidad { get => calidad; }
-        public override string Tipo { get => tipo; }
-        public override string Cuello { get => cuello; }
-        public static int Cantidad
+        //Propiedades
+        public override int Cantidad
         {
             get
             {
@@ -45,7 +42,8 @@ namespace Domain_TiendaDeRopa
                 return 0;
             }
         }
-
+        
+        //Métodos
         public CamisaMangaCorta(string calidad, string cuello)
         {
             if (cuello == "Cuello Común")
@@ -71,40 +69,6 @@ namespace Domain_TiendaDeRopa
                 }
             }
             this.calidad = calidad;
-            this.cuello = cuello;
-            tipo = "Camisa Manga Corta";
-        }
-
-        public void DatosSolicitados(string calidad, string cuello)
-        {
-            calidadPedida = calidad;
-            cuelloPedido = cuello;
-        }
-
-        public void Cotizar(string calidad, string cuello)
-        {
-            if (cuello == "Cuello Común")
-            {
-                if (calidad == "Standard")
-                {
-                    cantidadStandardComun--;
-                }
-                else if (calidad == "Premium")
-                {
-                    cantidadPremiumComun--;
-                }
-            }
-            else if (cuello == "Cuello Mao")
-            {
-                if (calidad == "Standard")
-                {
-                    cantidadStandardMao--;
-                }
-                else if (calidad == "Premium")
-                {
-                    cantidadPremiumMao--;
-                }
-            }
         }
     }
 }

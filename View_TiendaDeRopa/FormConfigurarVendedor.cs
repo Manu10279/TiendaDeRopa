@@ -14,17 +14,16 @@ namespace View_TiendaDeRopa
 {
     public partial class FormConfigurarVendedor : Form
     {
+        //Atributos
         VendedorPresenter vendedor;
-        private int intentoInt;
-        private string nombre = "", apellido = "", codigo = "";
-        private float intentoFloat;
-        //Vendedor vendedor;
 
+        //Excepciones
         public class NoString : Exception
         {
             public NoString(string mensaje) : base("Error: " + mensaje) { }
         }
 
+        //Form
         public FormConfigurarVendedor(VendedorPresenter configurarVendedor)
         {
             InitializeComponent();
@@ -39,7 +38,7 @@ namespace View_TiendaDeRopa
             BGuardar.Text = "Guardar";
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e) //Marcando Errores Automáticamente
         {
             if (TBVendedorNombre.Text != "")
             {
@@ -47,9 +46,9 @@ namespace View_TiendaDeRopa
                 {
                     foreach (char caracter in TBVendedorNombre.Text)
                     {
-                        if (TBVendedorNombre.Text != "" && !Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter)) //Nombre Formato
+                        if (!Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter)) //Nombre Formato
                         {
-                            throw new NoString("Escriba solo letras");
+                            throw new NoString("");
                         }
                         else
                         {
@@ -73,9 +72,9 @@ namespace View_TiendaDeRopa
                 {
                     foreach (char caracter in TBVendedorApellido.Text)
                     {
-                        if (TBVendedorApellido.Text != "" && !Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter)) //Nombre Formato
+                        if (!Char.IsLetter(caracter) && !Char.IsWhiteSpace(caracter)) //Nombre Formato
                         {
-                            throw new NoString("Escriba solo letras");
+                            throw new NoString("");
                         }
                         else
                         {

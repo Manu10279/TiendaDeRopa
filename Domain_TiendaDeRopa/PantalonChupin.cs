@@ -8,13 +8,11 @@ namespace Domain_TiendaDeRopa
 {
     public class PantalonChupin : Pantalon
     {
-        private string calidad, tipo;
-        private static string calidadPedida = "";
+        //Atributos
         private static int cantidadStandard = 0, cantidadPremium = 0;
 
-        public override string Calidad { get => calidad; }
-        public override string Tipo { get => tipo; }
-        public static int Cantidad
+        //Propiedades
+        public override int Cantidad
         {
             get
             {
@@ -29,7 +27,8 @@ namespace Domain_TiendaDeRopa
                 return 0;
             }
         }
-
+        
+        //Métodos
         public PantalonChupin(string calidad)
         {
             if (calidad == "Standard")
@@ -41,24 +40,6 @@ namespace Domain_TiendaDeRopa
                 cantidadPremium++;
             }
             this.calidad = calidad;
-            tipo = "Pantalon Chupin";
-        }
-
-        public void DatosSolicitados(string calidad)
-        {
-            calidadPedida = calidad;
-        }
-
-        public void Cotizar(string calidad)
-        {
-            if (calidad == "Standard")
-            {
-                cantidadStandard--;
-            }
-            else if (calidad == "Premium")
-            {
-                cantidadPremium--;
-            }
         }
     }
 }
