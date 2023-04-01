@@ -15,7 +15,7 @@ namespace View_TiendaDeRopa
     public partial class FormConfigurarVendedor : Form
     {
         //Atributos
-        VendedorPresenter vendedor;
+        private VendedorPresenter vendedor;
 
         //Excepciones
         public class NoString : Exception
